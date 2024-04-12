@@ -5,6 +5,7 @@ const nextConfig = {
     defaultLocale: "en",
     locales: ["en", "ar"],
   },
+  wwwww,
 };
 
 export default nextConfig;

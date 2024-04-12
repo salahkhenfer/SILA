@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import ButtonLang from "../ButtonLang/ButtonLang";
 import { useTranslation } from "i18next";
+aaaaaaaaa;
 function Header() {
   const [isOpenMenu, setIsOpenMenu] = useState(true);
   const pathname = usePathname();
