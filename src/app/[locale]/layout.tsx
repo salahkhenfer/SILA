@@ -17,13 +17,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+  params: { locale },
+}: {
   children: React.ReactNode;
-}>) {
+  params: { locale: string };
+}) {
   return (
     <html lang="en">
       <body className={poppinsFont.className}>
-        <Header />
+        {/* <Header /> */}
         {children}
       </body>
     </html>

@@ -4,12 +4,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import ButtonLang from "../ButtonLang/ButtonLang";
-import { useTranslation } from "i18next";
-aaaaaaaaa;
+import { useTranslation } from "next-i18next";
+import { getIntl } from "@/lib/intl";
+
 function Header() {
+  const { t } = useTranslation();
+
   const [isOpenMenu, setIsOpenMenu] = useState(true);
   const pathname = usePathname();
-  const { t, i18n } = useTranslation("common");
   console.log(pathname);
   const handelOpenMenu = () => {
     setIsOpenMenu(!isOpenMenu);
@@ -57,7 +59,7 @@ function Header() {
         >
           <Link href="/">
             <div className="  cursor-pointer hover:text-white text-xl   text-gray-300  text-xl font-normal font-['Cairo']">
-              t{"test"}
+              t('test')
             </div>
           </Link>
           <Link href="/ServicePage" onClick={() => setIsScrolled(true)}>
