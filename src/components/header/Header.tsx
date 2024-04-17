@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import ButtonLang from "../ButtonLang/ButtonLang";
 import { useTranslation } from "next-i18next";
-import { getIntl } from "@/lib/intl";
 
 function Header() {
   const { t } = useTranslation();
