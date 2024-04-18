@@ -1,3 +1,20 @@
 {
-  "title": " salah "
+  "locale": "en",
+  "title": " sila ",
+  "lang": "english",
+  "service": "Service",
+  "services": "Services",
+  "contact": "Contact",
+  "home": "Home",
+  "aboutUs": "About Us",
+  "sila": "Sila",
+  "login": "Login",
+  "SeeOurServices": "See our services",
+  "silaDescription1": "From Ads to Social Media, We&apos;re Your All-in-One Solution",
+  "silaDescription2": "With sila agency make your business easy.",
+
+  "LocaleSwitcher": {
+    "label": "Change language",
+    "locale": "{locale, select, ar {ar عربية} en {🇺🇸 English} other {Unknown}}"
+  }
 }

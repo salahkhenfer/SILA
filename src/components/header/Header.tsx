@@ -4,23 +4,28 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import ButtonLang from "../ButtonLang/ButtonLang";
-import { useTranslation } from "next-i18next";
 
-function Header() {
-  const { t } = useTranslation();
+import { useLocale, useTranslations } from "next-intl";
+import LocaleSwitcher from "../LocaleSwitcher";
+
+function Header(local: any) {
+  const t = useTranslations();
+  const defaultLocale = useLocale();
 
   const [isOpenMenu, setIsOpenMenu] = useState(true);
   const pathname = usePathname();
-  console.log(pathname);
+  console.log(defaultLocale);
+
   const handelOpenMenu = () => {
     setIsOpenMenu(!isOpenMenu);
+    console.log("rr");
   };
   const [isScrolled, setIsScrolled] = useState(false);
   const handleScroll = () => {
-    if (window.scrollY > 0 || window.location.pathname !== "/") {
+    if (window.scrollY > 0 || pathname !== "/") {
       setIsScrolled(true);
       // eslint-disable-next-line no-dupe-else-if
-    } else if (window.location.pathname !== "/") {
+    } else if (pathname !== "/") {
       setIsScrolled(false);
     } else {
       setIsScrolled(false);
@@ -32,6 +37,7 @@ function Header() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
+    console.log(pathname);
   }, [pathname]);
 
   return (
@@ -58,17 +64,17 @@ function Header() {
         >
           <Link href="/">
             <div className="  cursor-pointer hover:text-white text-xl   text-gray-300  text-xl font-normal font-['Cairo']">
-              t('test')
+              {t("title")}
             </div>
           </Link>
           <Link href="/ServicePage" onClick={() => setIsScrolled(true)}>
             <div className=" cursor-pointer    hover:text-white text-xl   text-gray-300  duration-200  font-normal font-['Cairo']">
-              خدماتنا{" "}
+              {t("service")}
             </div>
           </Link>
           <Link href="/AboutUs">
             <div className=" cursor-pointer   hover:text-white text-xl   text-gray-300   duration-200 font-normal font-['Cairo']">
-              من نحن{" "}
+              {t("about")}
             </div>
           </Link>
           {/* <div className="  cursor-pointer  text-white text-xl hover:text-primerColor  duration-200  font-normal font-['Cairo']">
@@ -76,13 +82,13 @@ function Header() {
           </div> */}
           <Link href="/Contact">
             <div className=" cursor-pointer   hover:text-white text-xl   text-gray-300  duration-200  font-normal font-['Cairo']">
-              أتصل بنا{" "}
+              {t("contact")}
             </div>
           </Link>
         </div>
 
         <div className="w-[15%] self-center  h-20  flex items-center justify-around  ">
-          <ButtonLang />
+          <LocaleSwitcher />
         </div>
       </div>
       {/* mobil  */}
@@ -94,13 +100,16 @@ function Header() {
           سيلا
         </div> */}
         <Link href="/">
-          {/* <Image
+          <img
             className="w-20"
             src="https://sila-co.com/wp-content/uploads/2023/10/5f2e4560-d176-43d4-a8b7-731bb145cb40-e1698547045253.png"
             alt=""
-          /> */}
+          />
         </Link>
-        <div className="  cursor-pointer" onClick={handelOpenMenu}>
+        <div
+          className="  cursor-pointer -z-50 "
+          onClick={() => handelOpenMenu()}
+        >
           {!isOpenMenu ? (
             <div className=" text-white text-4xl font-semibold">X</div>
           ) : (
@@ -110,7 +119,6 @@ function Header() {
         </div>
 
         <div
-          dir="rtl"
           style={{ transform: `translateX(${isOpenMenu ? "-100%" : "0"})` }}
           className={`w-[100%]   translate-x-0 duration-500 
        
@@ -118,17 +126,17 @@ function Header() {
         >
           <Link href="/" onClick={handelOpenMenu}>
             <div className=" my-5  cursor-pointer text-white hover:text-primerColor text-xl font-normal font-['Cairo']">
-              الصفحة الرئيسية{" "}
+              {t("home")}
             </div>
           </Link>
           <Link href="/ServicePage" onClick={handelOpenMenu}>
             <div className=" my-5 cursor-pointer    text-white text-xl  hover:text-primerColor  duration-200  font-normal font-['Cairo']">
-              خدماتنا{" "}
+              {t("service")}
             </div>
           </Link>
           <Link href="/AboutUs" onClick={handelOpenMenu}>
             <div className="  my-5 cursor-pointer   text-white text-xl  hover:text-primerColor  duration-200 font-normal font-['Cairo']">
-              من نحن{" "}
+              {t("about")}
             </div>
           </Link>
           {/* <div className="  cursor-pointer  text-white text-xl hover:text-primerColor  duration-200  font-normal font-['Cairo']">
@@ -136,12 +144,12 @@ function Header() {
           </div> */}
           <Link href="/Contact" onClick={handelOpenMenu}>
             <div className=" my-5  cursor-pointer   text-white text-xl hover:text-primerColor  duration-200  font-normal font-['Cairo']">
-              أتصل بنا{" "}
+              {t("contact")}
             </div>
           </Link>
           <div className=" w-[40%] mx-auto  h-20  flex self-center text-center    items-center    justify-around">
             <div className="  cursor-pointer  text-white text-xl hover:text-primerColor  duration-200  font-normal font-['Cairo']">
-              تسجيل
+              {t("login")}
             </div>
           </div>
         </div>
